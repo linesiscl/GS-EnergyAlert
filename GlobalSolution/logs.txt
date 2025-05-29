@@ -1,0 +1,18 @@
+[29/05/2025 18:57:25] Novo cidadão cadastrado: julia_leite
+[29/05/2025 18:57:56] Tentativa de login falhou para cidadao Joao_Silva
+[29/05/2025 18:58:14] Login realizado com sucesso: cidadao julia_leite
+[29/05/2025 18:58:37] Login realizado com sucesso: cidadao joao_silva
+[29/05/2025 19:00:09] Login realizado com sucesso: cidadao julia_leite
+[29/05/2025 19:00:26] ERRO: Access to the path 'C:\Users\Aline\Desktop\facul\3ESR\c#\GlobalSolution\GlobalSolution\Data' is denied.
+[29/05/2025 19:00:37] Login realizado com sucesso: cidadao julia_leite
+[29/05/2025 19:01:55] Tentativa de login inválida como administrador.
+[29/05/2025 19:02:01] Administrador logado.
+[29/05/2025 19:02:13] Técnico cadastrado por admin: aline_fernandes
+[29/05/2025 19:03:44] Login realizado com sucesso: cidadao julia_leite
+[29/05/2025 19:05:58] Tentativa de login falhou para cidadao Julia Leite_Leite
+[29/05/2025 19:06:05] Login realizado com sucesso: cidadao julia_leite
+[29/05/2025 19:07:33] Login realizado com sucesso: cidadao julia_leite
+[29/05/2025 19:10:40] Tentativa de login falhou para cidadao Julia Leite_0
+[29/05/2025 19:10:48] Login realizado com sucesso: cidadao julia_leite
+[29/05/2025 19:12:12] Novo cidadão cadastrado: aline_fernandes
+[29/05/2025 19:12:22] Login realizado com sucesso: cidadao aline_fernandes
