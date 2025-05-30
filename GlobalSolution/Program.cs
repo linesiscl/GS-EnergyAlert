@@ -77,8 +77,23 @@ class Program
                                 Console.WriteLine("\n== Registrar Falha ==");
                                 Console.Write("Local: ");
                                 string local = Console.ReadLine();
-                                Console.Write("Tipo: ");
-                                string tipo = Console.ReadLine();
+
+                                Console.WriteLine("Tipo de Falha:");
+                                Console.WriteLine("1. Queda Temporária");
+                                Console.WriteLine("2. Apagão");
+                                Console.WriteLine("3. Oscilação de tensão");
+                                Console.WriteLine("4. Queda programada");
+                                Console.Write("Escolha: ");
+                                string tipoOpcao = Console.ReadLine();
+                                string tipo = tipoOpcao switch
+                                {
+                                    "1" => "Queda Temporária",
+                                    "2" => "Apagão",
+                                    "3" => "Oscilação de tensão",
+                                    "4" => "Queda programada",
+                                    _ => "Outro"
+                                };
+
                                 Console.Write("Descrição: ");
                                 string descricao = Console.ReadLine();
 
@@ -102,7 +117,7 @@ class Program
                                     Console.WriteLine("Nenhuma falha registrada.");
                                 else
                                     foreach (var f in falhas)
-                                        Console.WriteLine($"- {f.DataHora} | {f.Local} | Tipo: {f.Tipo} | Técnico: {f.TecnicoResponsavelId}");
+                                        Console.WriteLine($"- {f.DataHora} | {f.Local} | Tipo: {f.Tipo} | Técnico: {f.TecnicoId}");
                             }
                             else if (subOpcao == "3")
                             {
@@ -203,20 +218,57 @@ class Program
                         Console.WriteLine("Login de administrador bem-sucedido.");
                         Logs.Registrar("Administrador logado.");
 
-                        Console.WriteLine("\n== Cadastro de Técnico ==");
-                        Console.Write("Nome: ");
-                        string nome = Console.ReadLine();
-                        Console.Write("Sobrenome: ");
-                        string sobrenome = Console.ReadLine();
-                        Console.Write("Data de nascimento (dd/MM/yyyy): ");
-                        DateTime nascimento = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                        Console.Write("Senha: ");
-                        string senhaTecnico = Console.ReadLine();
+                        bool continuar = true;
+                        while (continuar)
+                        {
+                            Console.WriteLine("\n== Cadastro de Técnico ==");
+                            Console.Write("Nome: ");
+                            string nome = Console.ReadLine();
+                            Console.Write("Sobrenome: ");
+                            string sobrenome = Console.ReadLine();
+                            Console.Write("Data de nascimento (dd/MM/yyyy): ");
+                            DateTime nascimento = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                            Console.Write("Senha: ");
+                            string senhaTecnico = Console.ReadLine();
 
-                        var tecnico = new Tecnico { Nome = nome, Sobrenome = sobrenome, DataNascimento = nascimento, Senha = senhaTecnico };
-                        usuarioService.CadastrarTecnico(tecnico);
-                        Console.WriteLine("Técnico cadastrado com sucesso.");
-                        Logs.Registrar($"Técnico cadastrado por admin: {tecnico.Id}");
+                            Console.WriteLine("Especialidade do técnico:");
+                            Console.WriteLine("1. Queda Temporária");
+                            Console.WriteLine("2. Apagão");
+                            Console.WriteLine("3. Oscilação de tensão");
+                            Console.WriteLine("4. Queda programada");
+                            Console.Write("Escolha: ");
+                            string espOpcao = Console.ReadLine();
+                            string especialidade = espOpcao switch
+                            {
+                                "1" => "Queda Temporária",
+                                "2" => "Apagão",
+                                "3" => "Oscilação de tensão",
+                                "4" => "Queda programada",
+                                _ => "Outro"
+                            };
+
+                            var tecnico = new Tecnico
+                            {
+                                Nome = nome,
+                                Sobrenome = sobrenome,
+                                DataNascimento = nascimento,
+                                Senha = senhaTecnico,
+                                Especialidade = especialidade
+                            };
+
+                            usuarioService.CadastrarTecnico(tecnico);
+                            Console.WriteLine("Técnico cadastrado com sucesso.");
+                            Logs.Registrar($"Técnico cadastrado por admin: {tecnico.Id}");
+
+                            Console.Write("\nDeseja cadastrar outro técnico? (s/n): ");
+                            string resposta = Console.ReadLine()?.ToLower();
+                            if (resposta != "s" && resposta != "sim")
+                            {
+                                continuar = false;
+                                Console.WriteLine("Encerrando sessão do administrador...");
+                                Logs.Registrar("Administrador encerrou o cadastro de técnicos.");
+                            }
+                        }
                     }
                     else
                     {

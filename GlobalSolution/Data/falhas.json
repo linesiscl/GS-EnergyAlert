@@ -5,6 +5,14 @@
     "Tipo": "Perigo",
     "Descricao": "Queda de energia por chuva forte",
     "IdCidadao": "julia_leite",
-    "TecnicoResponsavelId": "joao_silva"
+    "TecnicoId": null
+  },
+  {
+    "DataHora": "2025-05-30T19:25:55.7947139-03:00",
+    "Local": "Rua Coronel Diogo",
+    "Tipo": "Baixa Tens\u00E3o",
+    "Descricao": "nao tem",
+    "IdCidadao": "julia_leite",
+    "TecnicoId": "camilly_ishida"
   }
 ]

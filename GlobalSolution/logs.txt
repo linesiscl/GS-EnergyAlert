@@ -27,3 +27,12 @@
 [30/05/2025 17:43:23] Tentativa de login falhou para cidadao dnf_djd
 [30/05/2025 17:43:31] Tentativa de login falhou para cidadao Julia_Leite
 [30/05/2025 17:43:39] Tentativa de login inválida como administrador.
+[30/05/2025 19:23:27] Login realizado com sucesso: cidadao julia_leite
+[30/05/2025 19:25:41] Login realizado com sucesso: cidadao julia_leite
+[30/05/2025 19:26:28] Login realizado com sucesso: tecnico camilly_ishida
+[30/05/2025 19:31:10] Administrador logado.
+[30/05/2025 19:31:26] Técnico cadastrado por admin: matheus_muller
+[30/05/2025 19:31:35] Administrador logado.
+[30/05/2025 19:32:14] Técnico cadastrado por admin: julia_galvao
+[30/05/2025 19:36:37] Novo cidadão cadastrado: 
+[30/05/2025 19:41:11] Novo cidadão cadastrado: julia_leite1

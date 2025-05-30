@@ -8,7 +8,7 @@ namespace GlobalSolution.Model
         public string Tipo { get; set; }
         public string Descricao { get; set; }
         public string IdCidadao { get; set; }
-        public string TecnicoResponsavelId { get; set; }
+        public string TecnicoId { get; set; }
     }
 }
 

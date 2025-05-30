@@ -4,13 +4,31 @@
     "Sobrenome": "Silva",
     "DataNascimento": "1985-06-10T00:00:00",
     "Senha": "1234",
-    "Id": "joao_silva"
+    "Id": "joao_silva",
+    "Especialidade": "Queda programada"
   },
   {
     "Nome": "Camilly",
     "Sobrenome": "Ishida",
     "DataNascimento": "2005-04-01T00:00:00",
     "Senha": "111",
-    "Id": "camilly_ishida"
+    "Id": "camilly_ishida",
+    "Especialidade": "Oscila\u00E7\u00E3o de tens\u00E3o"
+  },
+  {
+    "Nome": "Matheus",
+    "Sobrenome": "Muller",
+    "DataNascimento": "2002-12-17T00:00:00",
+    "Senha": "777",
+    "Id": "matheus_muller",
+    "Especialidade": "Apag\u00E3o"
+  },
+  {
+    "Nome": "Julia",
+    "Sobrenome": "Galvao",
+    "DataNascimento": "1999-06-24T00:00:00",
+    "Senha": "333",
+    "Id": "julia_galvao",
+    "Especialidade": "Queda Tempor\u00E1ria"
   }
 ]

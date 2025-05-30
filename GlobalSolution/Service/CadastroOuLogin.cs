@@ -26,12 +26,16 @@ public class CadastroOuLogin
 
     public void CadastrarCidadao(Cidadao c)
     {
+        var idsExistentes = cidadaos.Select(u => u.Id).ToList();
+        c.GerarIdUnico(idsExistentes);
         cidadaos.Add(c);
         SalvarUsuarios();
     }
 
     public void CadastrarTecnico(Tecnico t)
     {
+        var idsExistentes = tecnicos.Select(u => u.Id).ToList();
+        t.GerarIdUnico(idsExistentes);
         tecnicos.Add(t);
         SalvarUsuarios();
     }

@@ -8,7 +8,23 @@ namespace GlobalSolution.Model
         public DateTime DataNascimento { get; set; }
         public string Senha { get; set; }
 
-        public string Id => $"{Nome.ToLower()}_{Sobrenome.ToLower()}";
+        public string Id { get; set; }
+        public string Especialidade { get; set; }
+
+        public void GerarIdUnico(IEnumerable<string> idsExistentes)
+        {
+            string baseId = $"{Nome.ToLower()}_{Sobrenome.ToLower()}";
+            string novoId = baseId;
+            int contador = 1;
+
+            while (idsExistentes.Contains(novoId))
+            {
+                novoId = $"{baseId}{contador}";
+                contador++;
+            }
+
+            Id = novoId;
+        }
     }
 }
 

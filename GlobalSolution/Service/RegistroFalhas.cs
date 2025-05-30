@@ -20,12 +20,20 @@ public class RegistroFalhas
         var tecnicos = usuarioService.ListarTecnicos();
         if (tecnicos.Any())
         {
-            var tecnicoAleatorio = tecnicos[new Random().Next(tecnicos.Count)];
-            falha.TecnicoResponsavelId = tecnicoAleatorio.Id;
+            var tecnicoCompativel = tecnicos.FirstOrDefault(t => t.Especialidade.Equals(falha.Tipo, StringComparison.OrdinalIgnoreCase));
+            if (tecnicoCompativel != null)
+            {
+                falha.TecnicoId = tecnicoCompativel.Id;
+            }
+            else
+            {
+                var tecnicoAleatorio = tecnicos[new Random().Next(tecnicos.Count)];
+                falha.TecnicoId = tecnicoAleatorio.Id;
+            }
         }
         else
         {
-            falha.TecnicoResponsavelId = "N/A";
+            falha.TecnicoId = "N/A";
         }
 
         falhas.Add(falha);
@@ -57,7 +65,7 @@ public class RegistroFalhas
 
     public List<FalhaDeEnergia> ListarPorTecnico(string tecnicoId)
     {
-        return falhas.Where(f => f.TecnicoResponsavelId == tecnicoId).ToList();
+        return falhas.Where(f => f.TecnicoId == tecnicoId).ToList();
     }
 
 }
