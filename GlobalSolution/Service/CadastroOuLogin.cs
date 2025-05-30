@@ -13,7 +13,6 @@ public class CadastroOuLogin
     private readonly string caminhoTecnicos;
     private readonly string caminhoAdmin;
 
-  
 
     public CadastroOuLogin()
     {
@@ -61,11 +60,6 @@ public class CadastroOuLogin
     }
 
     public List<Tecnico> ListarTecnicos() => tecnicos;
-
-    public bool TemCidadaos()
-    {
-        return cidadaos.Any();
-    }
 
     private void CarregarUsuarios()
     {

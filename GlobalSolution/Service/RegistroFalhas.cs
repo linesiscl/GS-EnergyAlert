@@ -1,7 +1,7 @@
 ﻿using GlobalSolution.Model;
 using System.Text.Json;
 
-public class FalhaService
+public class RegistroFalhas
 {
     private List<FalhaDeEnergia> falhas = new();
 
@@ -9,7 +9,7 @@ public class FalhaService
 
     private CadastroOuLogin usuarioService;
 
-    public FalhaService(CadastroOuLogin usuarioService)
+    public RegistroFalhas(CadastroOuLogin usuarioService)
     {
         this.usuarioService = usuarioService;
         CarregarFalhas();
@@ -54,4 +54,10 @@ public class FalhaService
     {
         File.WriteAllText(caminhoFalhas, JsonSerializer.Serialize(falhas, new JsonSerializerOptions { WriteIndented = true }));
     }
+
+    public List<FalhaDeEnergia> ListarPorTecnico(string tecnicoId)
+    {
+        return falhas.Where(f => f.TecnicoResponsavelId == tecnicoId).ToList();
+    }
+
 }

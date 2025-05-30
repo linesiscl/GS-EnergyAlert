@@ -8,7 +8,8 @@ class Program
     static void Main(string[] args)
     {
         CadastroOuLogin usuarioService = new CadastroOuLogin();
-        FalhaService falhaService = new FalhaService(usuarioService);
+        RegistroFalhas registroFalhas = new RegistroFalhas(usuarioService);
+        ServicoDeAlerta servicoDeAlerta = new ServicoDeAlerta();
 
         while (true)
         {
@@ -17,10 +18,7 @@ class Program
                 Console.Clear();
                 Console.WriteLine("=== ENERGY ALERT ===");
                 Console.WriteLine("1. Cadastrar Cidadão");
-
-                if (usuarioService.TemCidadaos())
-                    Console.WriteLine("2. Login Cidadão");
-
+                Console.WriteLine("2. Login Cidadão");
                 Console.WriteLine("3. Login Técnico");
                 Console.WriteLine("4. Login Administrador");
                 Console.WriteLine("0. Sair");
@@ -46,7 +44,7 @@ class Program
                     Console.WriteLine("Cidadão cadastrado com sucesso.");
                     Logs.Registrar($"Novo cidadão cadastrado: {c.Id}");
                 }
-                else if (opcao == "2" && usuarioService.TemCidadaos())
+                else if (opcao == "2")
                 {
                     Console.WriteLine("\n== Login Cidadão ==");
                     Console.Write("Nome: ");
@@ -67,6 +65,7 @@ class Program
                             Console.WriteLine("\n== Menu do Cidadão ==");
                             Console.WriteLine("1. Registrar Falha de Energia");
                             Console.WriteLine("2. Ver Minhas Falhas");
+                            Console.WriteLine("3. Ver Alertas");
                             Console.WriteLine("0. Sair");
                             Console.Write("Escolha: ");
                             string subOpcao = Console.ReadLine();
@@ -92,29 +91,30 @@ class Program
                                     IdCidadao = cidadao.Id
                                 };
 
-                                falhaService.AdicionarFalha(falha);
+                                registroFalhas.AdicionarFalha(falha);
                                 Console.WriteLine("Falha registrada com sucesso.");
                             }
                             else if (subOpcao == "2")
                             {
                                 Console.WriteLine("\n== Suas Falhas de Energia ==");
-                                var falhas = falhaService.ListarPorCidadao(cidadao.Id);
+                                var falhas = registroFalhas.ListarPorCidadao(cidadao.Id);
                                 if (falhas.Count == 0)
-                                {
                                     Console.WriteLine("Nenhuma falha registrada.");
-                                }
                                 else
-                                {
                                     foreach (var f in falhas)
-                                    {
                                         Console.WriteLine($"- {f.DataHora} | {f.Local} | Tipo: {f.Tipo} | Técnico: {f.TecnicoResponsavelId}");
-                                    }
-                                }
                             }
-                            else
+                            else if (subOpcao == "3")
                             {
-                                Console.WriteLine("Opção inválida.");
+                                Console.WriteLine("\n== Alertas Ativos ==");
+                                var alertas = servicoDeAlerta.ListarAlertas();
+                                if (alertas.Count == 0)
+                                    Console.WriteLine("Nenhum alerta ativo.");
+                                else
+                                    foreach (var a in alertas)
+                                        Console.WriteLine($"- {a.DataHora} | {a.Local} | Tipo: {a.Tipo} | {a.Descricao}");
                             }
+                            else Console.WriteLine("Opção inválida.");
                         }
                     }
                     else
@@ -139,7 +139,50 @@ class Program
                         Console.WriteLine("Login bem-sucedido.");
                         Logs.Registrar($"Login realizado com sucesso: tecnico {tecnico.Id}");
 
-                        Console.WriteLine("\nFuncionalidades para técnico ainda não implementadas.");
+                        while (true)
+                        {
+                            Console.WriteLine("\n== Menu do Técnico ==");
+                            Console.WriteLine("1. Registrar Alerta de Perigo");
+                            Console.WriteLine("2. Registrar Alerta de Resolução");
+                            Console.WriteLine("3. Ver Falhas Atribuídas");
+                            Console.WriteLine("0. Sair");
+                            Console.Write("Escolha: ");
+                            string subOpcao = Console.ReadLine();
+
+                            if (subOpcao == "0") break;
+
+                            if (subOpcao == "1" || subOpcao == "2")
+                            {
+                                Console.Write("Local: ");
+                                string local = Console.ReadLine();
+                                Console.Write("Descrição: ");
+                                string descricao = Console.ReadLine();
+                                string tipo = subOpcao == "1" ? "Perigo" : "Resolvido";
+
+                                var alerta = new Alerta
+                                {
+                                    Local = local,
+                                    Tipo = tipo,
+                                    Descricao = descricao,
+                                    DataHora = DateTime.Now,
+                                    TecnicoId = tecnico.Id
+                                };
+
+                                servicoDeAlerta.AdicionarAlerta(alerta);
+                                Console.WriteLine("Alerta registrado com sucesso.");
+                            }
+                            else if (subOpcao == "3")
+                            {
+                                Console.WriteLine("\n== Falhas Atribuídas ==");
+                                var falhas = registroFalhas.ListarPorTecnico(tecnico.Id);
+                                if (falhas.Count == 0)
+                                    Console.WriteLine("Nenhuma falha atribuída.");
+                                else
+                                    foreach (var f in falhas)
+                                        Console.WriteLine($"- {f.DataHora} | {f.Local} | Tipo: {f.Tipo} | Descrição: {f.Descricao}");
+                            }
+                            else Console.WriteLine("Opção inválida.");
+                        }
                     }
                     else
                     {
@@ -202,4 +245,3 @@ class Program
         }
     }
 }
-
