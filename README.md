@@ -14,7 +14,20 @@ Julia Leite - RM550201
 
 ---
 
-## 🌨️ Instruções de Execução
+## 🌨️ Descrição do problema
+
+Atualmente, a população de diversos países precisa lidar constantemente com as quedas de energia em detrimento de fortes chuvas, falto de preparo, entre outros motivos. De acordo com o portal G1 (2025), apenas em 2024 foram feitos 5,7 milhões de chamados relativos à falta de luz no Brasil, além de o tempo de resposta para atendimentos de situações de emergência ter deteriorado.
+
+Por consequência do ritmo acelerado e dependente das fontes energéticas em que vivemos, muitas pessoas precisam da energia para necessidades essenciais, como trabalhar ou estudar, sem contar os que precisam dela para, de fato, sobreviver, como no caso de pessoas que utilizam aparelhos hospitalares.
+
+Em suma, a falta de energia é um problema que atinge diversos cidadãos em diversas escalas, e por isso, é necessário que a tecnologia possa ajudar na prevenção, solução ou auxílio nessas ocasiões.
+
+---
+
+## 🌨️ Visão Geral da Solução
+
+
+### 🌨️ Instruções de Execução
 Ao testar o projeto, mudar o caminho (dentro das classes Logs.cs, RegistroFalhas.cs e CadastroOuLogin.cs dentro da pasta Service) dos arquivos para o caminho em que eles se encontram em seu computador.
 
 ---
