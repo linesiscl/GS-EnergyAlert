@@ -1,6 +1,5 @@
 ﻿using GlobalSolution.Model;
 using GlobalSolution.Service;
-using System;
 using System.Globalization;
 
 class Program
